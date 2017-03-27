@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="2.5">
+	<display-name>WukongRebateServer</display-name>
+
+	<!-- 配置Spring的监听器 -->
+	<!-- <listener>
+		监听器默认加载的是WEB-INF/applicationContext.xml
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener> -->
+	<!-- 自定义ContextLoaderListener，以实现服务器启动时监听淘宝订单变化 -->
+	<listener>
+		<listener-class>com.shenrui.wukong.utils.ProjectInit</listener-class>
+	</listener>
+
+	<!-- 指定Spring框架的配置文件所在的位置 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:applicationContext.xml</param-value>
+	</context-param>
+
+	<!-- 配置Struts2的核心过滤器 -->
+	<filter>
+		<filter-name>struts2</filter-name>
+		<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>struts2</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+</web-app>
